@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Net CO2 Emissions Per 10,000 People in Australia in 2022",
+  "width": 800,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/lucasenders/FIT3179/refs/heads/main/week9_homework/data/emissions_normalised_2022.csv",
+    "format": {"type": "csv"}
+  },
+  "projection": {"type": "mercator"},
+  "layer": [
+    {
+      "data": {
+        "url": "states.json",
+        "format": {"type": "topojson", "feature": "STE_2016_AUST"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.STE_NAME16",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/lucasenders/FIT3179/refs/heads/main/data/emissions_normalised_2022.csv",
+              "format": {"type": "csv"}
+            },
+            "key": "State",
+            "fields": ["Emissions Per 10000 People"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke":"white"},
+      "encoding": {
+        "color": {
+          "field": "Emissions Per 10000 People",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 150, 400],  
+            "range": ["#eafaf1", "#fcf3cf", "#f5b041", "#d35400"],  
+            "type": "threshold" 
+          },
+          "legend": {
+            "title": "Net CO2 Emissions per 10,000 People"
+          }
+        },
+        "tooltip": [
+          {"field": "properties.STE_NAME16", "type": "nominal", "title": "State"},
+          {"field": "Emissions Per 10000 People", "type": "quantitative", "title": "Emissions (Gg CO₂-e)"}
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
