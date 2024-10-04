@@ -4,7 +4,7 @@
   "width": 800,
   "height": 400,
   "data": {
-    "url": "https://raw.githubusercontent.com/lucasenders/FIT3179/refs/heads/main/week9_homework/data/emissions_normalised_2022.csv",
+    "url": "https://raw.githubusercontent.com/lucasenders/week9_homework/refs/heads/main/data/emissions_normalised_2022.csv",
     "format": {"type": "csv"}
   },
   "projection": {"type": "mercator"},
